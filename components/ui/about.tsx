@@ -1,137 +1,148 @@
 import Image from "next/image";
 import { LuFileText, LuMail, LuMapPin } from "react-icons/lu";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { SiGooglescholar, SiOrcid } from "react-icons/si";
 
+import { profile } from "@/content/profile";
+import ThemeToggle from "@/components/ui/theme-toggle";
 import { Button, Link } from "@heroui/react";
-import { FaGithub } from "react-icons/fa";
+
+const actions = [
+  {
+    label: "Email",
+    href: `mailto:${profile.email}`,
+    icon: LuMail,
+    variant: "primary" as const,
+  },
+  {
+    label: "GitHub",
+    href: profile.links.github,
+    icon: FaGithub,
+    variant: "tertiary" as const,
+  },
+  {
+    label: "CV",
+    href: profile.links.cv,
+    icon: LuFileText,
+    variant: "tertiary" as const,
+  },
+  {
+    label: "LinkedIn",
+    href: profile.links.linkedin,
+    icon: FaLinkedin,
+    variant: "tertiary" as const,
+  },
+  {
+    label: "Scholar",
+    href: profile.links.scholar,
+    icon: SiGooglescholar,
+    variant: "tertiary" as const,
+  },
+  {
+    label: "ORCID",
+    href: profile.links.orcid,
+    icon: SiOrcid,
+    variant: "tertiary" as const,
+  },
+];
 
 export default function About() {
   return (
-    <main className="flex-1">
-      <div className="pt-4 flex flex-row gap-4 items-center ">
+    <main className="w-full md:w-[26rem] md:shrink-0 md:self-start">
+      <div className="pt-4 flex flex-row gap-4 items-center">
         <Image
-          alt="My photo"
-          className="rounded-2xl"
-          src="/potrait.jpg"
-          width={120}
+          alt="Anshul Kumar Yadav"
+          className="size-[120px] rounded-2xl object-cover"
           height={120}
+          src="/portrait.jpeg"
+          width={120}
         />
         <div className="flex flex-col gap-2">
-          <p>Hey there,</p>
-          <p className="text-2xl font-semibold">I'm Aniruddha.</p>
+          <div className="flex items-center justify-between gap-2">
+            <p>Hey there,</p>
+            <ThemeToggle />
+          </div>
+          <p className="text-2xl font-semibold">I&apos;m Anshul.</p>
           <div className="flex gap-1 items-center text-sm">
             <LuMapPin />
-            Mumbai & Kolkata, India
+            {profile.location}
           </div>
         </div>
       </div>
-      <div className="pt-4">
+      <div className="flex flex-col gap-3 pt-4">
         <p>
-          I am a master's student at{" "}
+          I&apos;m a Master&apos;s by Research student in Healthcare Informatics
+          at{" "}
           <Link className="hover:underline" href="https://www.iitb.ac.in/">
             IIT Bombay
             <Link.Icon />
           </Link>
-          , working at the intersection of computer science and biology at{" "}
-          <Link className="hover:underline" href="https://saketlab.in/">
-            Saket Lab
-            <Link.Icon />
-          </Link>
-          . My research focuses on developing and improving computational
-          pipelines for single-cell gene expression data, along with building
-          tools that simplify and accelerate the work of computational
-          biologists. I completed my bachelor's in computer science and
-          engineering at{" "}
-          <Link className="hover:underline" href="https://www.tezu.ernet.in/">
-            Tezpur University
-            <Link.Icon />
-          </Link>
-          .
-        </p>
-        <br />
-        <p>
-          Outside the lab, you’ll usually find me hiking, reading, or subjecting
-          my colleagues to a stream of facts about my latest hobby or obsession.
-          I enjoy talking about books, movies, video games, and computers.
-        </p>
-      </div>
-      <div className="mt-4 flex gap-4">
-        <Button
-          variant="primary"
-          onClick={() => (window.location.href = "mailto:amkhrjee@gmail.com")}
-        >
-          <LuMail />
-          Email me
-          {/* </Link> */}
-        </Button>
-        <Button
-          variant="tertiary"
-          onClick={() =>
-            (window.location.href = "https://github.com/amkhrjee/")
-          }
-        >
-          <FaGithub />
-          GitHub
-        </Button>
-        <Button
-          variant="tertiary"
-          onClick={() => (window.location.href = "/CV_Aniruddha.pdf")}
-        >
-          <LuFileText />
-          CV
-        </Button>
-      </div>
-
-      <div className="pt-4">
-        <p>
-          I'm available to connect via{" "}
+          , under{" "}
           <Link
-            href="https://www.linkedin.com/in/amkhrjee/"
-            rel="noopener noreferrer"
-            target="_blank"
+            className="hover:underline"
+            href="https://www.kcdh.iitb.ac.in/kshitij"
           >
-            LinkedIn
+            Prof. Kshitij Jadhav
+            <Link.Icon />
+          </Link>
+          , working at the intersection of computer vision,
+          and healthcare. At IIT Bombay, I also hold a concurrent role of Research Staff at the{" "}
+          <Link className="hover:underline" href="https://www.kcdh.iitb.ac.in/">
+            Koita Centre for Digital Health (KCDH)
+            <Link.Icon />
+          </Link>
+          . Alongside this, I work as a member of technical staff at{" "}
+          <Link className="hover:underline" href="https://www.radailabs.in/">
+            Radai Pvt. Limited
+            <Link.Icon />
+          </Link>
+          , a medical AI startup.
+        </p>
+        <p>
+          My research centers on designing new architectures, probing what these
+          models actually learn, and optimizing them to be fast and reliable at
+          scale. More recently, I&apos;ve been chasing a bigger question: can
+          AI research in healthcare be translated into usable clinical workflows?
+          That question has pulled me into medical image understanding, vision-language models, 
+          continual learning, and self-supervised learning. 
+        </p>
+        <p>
+          My research has been generously supported by industry partners
+          including the{" "}
+          <Link
+            className="hover:underline"
+            href="https://www.koitafoundation.org/"
+          >
+            Koita Foundation
+            <Link.Icon />
+          </Link>
+          ,{" "}
+          <Link className="hover:underline" href="https://oraibio.com/">
+            Oraibio
             <Link.Icon />
           </Link>{" "}
-          and{" "}
-          <Link
-            aria-label="X / Twitter"
-            href="https://x.com/amkhrjee"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Twitter/X
+          (UK), and{" "}
+          <Link className="hover:underline" href="https://www.wadhwaniai.org/">
+            Wadhwani AI
             <Link.Icon />
           </Link>
-          .
+          , among others.
         </p>
-
-        <br />
-        {/* <p>
-          My writings can be found at{" "}
-          <Link underline="hover" href="/writings">
-            /writings
-          </Link>
-          .
-        </p> */}
-        <br />
-        <div className="text-default-600">
-          <p className="font-serif italic">
-            “All we have to decide is what to do with the time that is given to
-            us.”
-          </p>
-          <p className="text-right">
-            -{" "}
-            <Link
-              className="hover:underline"
-              style={{ color: "inherit" }}
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.youtube.com/watch?v=hdAN0o3oqB8"
-            >
-              Gandalf to Frodo at the mines of Moria
-            </Link>
-          </p>
-        </div>
+      </div>
+      <div className="mt-4 grid grid-cols-3 gap-2">
+        {actions.map((action) => (
+          <Button
+            key={action.label}
+            className="w-full"
+            variant={action.variant}
+            onPress={() => {
+              window.location.href = action.href;
+            }}
+          >
+            <action.icon />
+            {action.label}
+          </Button>
+        ))}
       </div>
     </main>
   );

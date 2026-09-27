@@ -7,25 +7,16 @@ import Providers from "./providers";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://amkhrjee.in"),
   title: {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords:
-    "portfolio, web development, software engineering, personal website, developer portfolio",
-  authors: [{ name: "Aniruddha Mukherjee", url: "https://amkhrjee.in" }],
-  creator: "Aniruddha Mukherjee",
-  publisher: "Aniruddha Mukherjee",
-
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: ["/og-image.jpg"],
-    creator: "@amkhrjee",
-  },
+    "Anshul Kumar Yadav, healthcare AI, computer vision, medical imaging, mammography, IIT Bombay, KCDH",
+  authors: [{ name: "Anshul Kumar Yadav" }],
+  creator: "Anshul Kumar Yadav",
+  publisher: "Anshul Kumar Yadav",
   robots: {
     index: true,
     follow: true,
@@ -38,8 +29,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
 };
 
@@ -68,8 +60,7 @@ export default function RootLayout({
             enableSystem: true,
           }}
         >
-          {/* <Navbar /> */}
-          <div className="relative z-10 mx-auto mt-8 max-w-300">{children}</div>
+          <div className="relative z-10 mx-auto max-w-300 py-8">{children}</div>
         </Providers>
       </body>
     </html>

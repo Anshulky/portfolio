@@ -1,9 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // Add metadata configuration
-  env: {
-    SITE_URL: "https://amkhrjee.in",
-  },
-};
+const nextConfig = {};
 
 module.exports = nextConfig;
