@@ -79,7 +79,7 @@ export default function ImageStackGallery({
 
       <Dialog onOpenChange={setOpen} open={open}>
         <DialogContent
-          className="w-[min(100%-1rem,64rem)] max-w-none gap-0 overflow-hidden bg-popover p-0 text-popover-foreground sm:max-w-none"
+          className="w-[min(calc(100%-1rem),64rem)] max-w-none gap-0 overflow-hidden bg-popover p-0 text-popover-foreground sm:max-w-none"
           showCloseButton={false}
         >
           <DialogTitle className="sr-only">Photo gallery</DialogTitle>
@@ -97,7 +97,7 @@ export default function ImageStackGallery({
           <div className="relative bg-muted">
             <div
               aria-label="Photo gallery. Swipe left or right to browse images."
-              className="flex max-h-[80vh] snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex max-h-[min(80dvh,calc(100dvh-6rem))] snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               onScroll={handleScroll}
               ref={galleryRef}
               role="region"
@@ -109,7 +109,7 @@ export default function ImageStackGallery({
                 >
                   <img
                     alt={image.alt}
-                    className="max-h-[80vh] w-full select-none object-contain"
+                    className="max-h-[min(80dvh,calc(100dvh-6rem))] w-full select-none object-contain"
                     draggable={false}
                     src={image.src}
                   />

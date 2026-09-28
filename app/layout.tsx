@@ -36,6 +36,9 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
@@ -51,7 +54,7 @@ export default function RootLayout({
     <html suppressHydrationWarning lang="en">
       <head />
       <body
-        className={`min-h-screen bg-background font-sans antialiased px-4 md:px-14`}
+        className="min-h-dvh overflow-x-hidden bg-background font-sans antialiased ps-[max(1rem,env(safe-area-inset-left))] pe-[max(1rem,env(safe-area-inset-right))] sm:ps-[max(1.5rem,env(safe-area-inset-left))] sm:pe-[max(1.5rem,env(safe-area-inset-right))] lg:ps-[max(2rem,env(safe-area-inset-left))] lg:pe-[max(2rem,env(safe-area-inset-right))] xl:ps-[max(3.5rem,env(safe-area-inset-left))] xl:pe-[max(3.5rem,env(safe-area-inset-right))]"
         suppressHydrationWarning
       >
         <Providers
@@ -60,7 +63,9 @@ export default function RootLayout({
             enableSystem: true,
           }}
         >
-          <div className="relative z-10 mx-auto max-w-300 py-8">{children}</div>
+          <div className="relative z-10 mx-auto w-full min-w-0 max-w-300 py-6 lg:py-8">
+            {children}
+          </div>
         </Providers>
       </body>
     </html>

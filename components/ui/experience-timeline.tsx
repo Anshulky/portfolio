@@ -50,8 +50,8 @@ export default function ExperienceTimeline({
               <p className="text-sm font-medium text-default-500">
                 {entry.period}
               </p>
-              <p className="font-semibold">{entry.title}</p>
-              <p className="font-medium">{entry.organisation}</p>
+              <p className="font-semibold break-words">{entry.title}</p>
+              <p className="font-medium break-words">{entry.organisation}</p>
             </Card.Header>
             <Card.Content>
               {entry.description && (

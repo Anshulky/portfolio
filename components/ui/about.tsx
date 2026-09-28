@@ -48,11 +48,11 @@ const actions = [
 
 export default function About() {
   return (
-    <main className="w-full md:w-[26rem] md:shrink-0 md:self-start">
-      <div className="pt-4 flex flex-row gap-4 items-center">
+    <main className="w-full min-w-0 lg:w-[22rem] lg:shrink-0 lg:self-start xl:w-[26rem]">
+      <div className="flex flex-row items-center gap-3 pt-4 sm:gap-4">
         <Image
           alt="Anshul Kumar Yadav"
-          className="size-[120px] rounded-2xl object-cover"
+          className="size-20 shrink-0 rounded-2xl object-cover sm:size-[120px]"
           height={120}
           src="/portrait.jpeg"
           width={120}
@@ -62,14 +62,14 @@ export default function About() {
             <p>Hey there,</p>
             <ThemeToggle />
           </div>
-          <p className="text-2xl font-semibold">I&apos;m Anshul.</p>
+          <p className="text-xl font-semibold sm:text-2xl">I&apos;m Anshul.</p>
           <div className="flex gap-1 items-center text-sm">
             <LuMapPin />
             {profile.location}
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-3 pt-4">
+      <div className="flex flex-col gap-3 pt-4 text-pretty">
         <p>
           I&apos;m a Master&apos;s by Research student in Healthcare Informatics
           at{" "}
@@ -129,11 +129,11 @@ export default function About() {
           , among others.
         </p>
       </div>
-      <div className="mt-4 grid grid-cols-3 gap-2">
+      <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
         {actions.map((action) => (
           <Button
             key={action.label}
-            className="w-full"
+            className="min-w-0 w-full px-2 text-sm"
             variant={action.variant}
             onPress={() => {
               window.location.href = action.href;

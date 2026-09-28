@@ -6,14 +6,14 @@
 html,
 body {
   scrollbar-width: thin;
-  scrollbar-color: color-mix(in oklab, var(--foreground) 28%, transparent)
+  scrollbar-color: color-mix(in oklab, var(--foreground) 35%, transparent)
     transparent;
 }
 
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 4px;
+  height: 4px;
 }
 
 html::-webkit-scrollbar-track,
@@ -23,10 +23,8 @@ body::-webkit-scrollbar-track {
 
 html::-webkit-scrollbar-thumb,
 body::-webkit-scrollbar-thumb {
-  background: color-mix(in oklab, var(--foreground) 22%, transparent);
-  border: 2px solid transparent;
+  background: color-mix(in oklab, var(--foreground) 32%, transparent);
   border-radius: 999px;
-  background-clip: padding-box;
 }
 
 .archive-scroll {
@@ -56,19 +54,20 @@ body::-webkit-scrollbar-thumb {
   width: 100%;
   max-width: 100%;
   display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
+  justify-content: flex-start;
+  gap: 0.25rem 0.5rem;
   flex-wrap: wrap;
   overflow: visible;
 }
 
 .tabs--secondary .tabs__tab {
-  flex: 1 1 0;
+  flex: 0 0 auto;
   justify-content: center;
-  min-width: 0;
+  min-width: max-content;
   width: auto;
   height: calc(var(--spacing) * 7);
-  padding-inline: calc(var(--spacing) * 2.5);
+  padding-inline: calc(var(--spacing) * 2);
+  white-space: nowrap;
 }
 
 .tabs__panel {
@@ -76,7 +75,7 @@ body::-webkit-scrollbar-thumb {
   overflow: visible;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .tab-workspace.tabs--secondary {
     display: flex;
     flex-direction: column;
@@ -110,5 +109,19 @@ body::-webkit-scrollbar-thumb {
   .tab-workspace .tabs__panel::-webkit-scrollbar-thumb {
     background: color-mix(in oklab, var(--foreground) 32%, transparent);
     border-radius: 999px;
+  }
+}
+
+@media (min-width: 80rem) {
+  .tabs--secondary > .tabs__list-container > .tabs__list[data-orientation="horizontal"] {
+    justify-content: space-between;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+  }
+
+  .tabs--secondary .tabs__tab {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding-inline: calc(var(--spacing) * 2.5);
   }
 }

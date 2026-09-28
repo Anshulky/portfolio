@@ -23,6 +23,7 @@ import {
   LuGraduationCap,
   LuNewspaper,
 } from "react-icons/lu";
+import type { ReactNode } from "react";
 
 function PaperList({ papers }: { papers: Paper[] }) {
   return (
@@ -32,10 +33,10 @@ function PaperList({ papers }: { papers: Paper[] }) {
           <div className="flex items-center gap-3">
             <div className="min-w-0 flex-1">
               <Card.Header className="font-semibold">
-                <p>{paper.title}</p>
+                <p className="break-words">{paper.title}</p>
               </Card.Header>
               <Card.Content>
-                <p className="text-sm text-default-500">
+                <p className="text-sm text-default-500 break-words">
                   {paper.venue}
                   {paper.note ? ` · ${paper.note}` : ""}
                 </p>
@@ -44,7 +45,7 @@ function PaperList({ papers }: { papers: Paper[] }) {
             {paper.href && (
               <a
                 aria-label={`Publisher page for ${paper.title}`}
-                className="mr-4 shrink-0"
+                className="mr-3 shrink-0 sm:mr-4"
                 href={paper.href}
                 rel="noopener noreferrer"
                 target="_blank"
@@ -61,6 +62,21 @@ function PaperList({ papers }: { papers: Paper[] }) {
           </div>
         </Card>
       ))}
+    </div>
+  );
+}
+
+function MediaCopy({
+  images,
+  children,
+}: {
+  images: GalleryImage[];
+  children: ReactNode;
+}) {
+  return (
+    <div className="flex min-w-0 flex-col gap-4 sm:flex-row sm:items-start">
+      {images.length > 0 && <ImageStackGallery images={images} />}
+      <div className="min-w-0">{children}</div>
     </div>
   );
 }
@@ -82,9 +98,9 @@ export default function Home({
   }));
 
   return (
-    <div className="flex flex-col items-start gap-4 md:flex-row md:gap-6">
+    <div className="flex w-full min-w-0 flex-col items-start gap-6 lg:h-[calc(100dvh-4rem)] lg:flex-row lg:gap-6">
       <About />
-      <div className="flex min-h-0 min-w-0 w-full flex-1 flex-col md:h-[calc(100dvh-4rem)] md:self-start md:overflow-hidden">
+      <div className="flex min-h-0 min-w-0 w-full flex-1 flex-col lg:h-full lg:self-start lg:overflow-hidden">
         <Tabs
           className="tab-workspace w-full"
           defaultSelectedKey="products"
@@ -125,25 +141,22 @@ export default function Home({
               {productCards.map((product) => (
                 <Card key={product.name}>
                   <Card.Header>
-                    <p className="text-xl font-semibold">{product.name}</p>
+                    <p className="text-lg font-semibold break-words sm:text-xl">
+                      {product.name}
+                    </p>
                     <p className="font-medium">{product.tagline}</p>
                   </Card.Header>
                   <Card.Content>
-                    <div className="flex gap-4 items-start justify-start">
-                      {product.images.length > 0 && (
-                        <ImageStackGallery images={product.images} />
+                    <MediaCopy images={product.images}>
+                      <p className="text-pretty">{product.summary}</p>
+                      {product.shaped.length > 0 && (
+                        <ul className="mt-3 list-disc space-y-1 pl-5 text-sm leading-6">
+                          {product.shaped.map((point) => (
+                            <li key={point}>{point}</li>
+                          ))}
+                        </ul>
                       )}
-                      <div>
-                        <p>{product.summary}</p>
-                        {product.shaped.length > 0 && (
-                          <ul className="mt-3 list-disc space-y-1 pl-5 text-sm leading-6">
-                            {product.shaped.map((point) => (
-                              <li key={point}>{point}</li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    </div>
+                    </MediaCopy>
                   </Card.Content>
                 </Card>
               ))}
@@ -171,23 +184,18 @@ export default function Home({
             <div className="flex flex-col gap-4">
               {news.map((item) => (
                 <Card key={item.title}>
-                  <Card.Header className="font-semibold">
+                  <Card.Header className="font-semibold break-words">
                     {item.title}
                   </Card.Header>
                   <Card.Content>
-                    <div className="flex gap-4 items-start justify-start">
-                      {item.images.length > 0 && (
-                        <ImageStackGallery images={item.images} />
+                    <MediaCopy images={item.images}>
+                      <p className="text-pretty">{item.body}</p>
+                      {item.href && item.hrefLabel && (
+                        <p className="mt-2">
+                          <Link href={item.href}>{item.hrefLabel}</Link>
+                        </p>
                       )}
-                      <div>
-                        <p>{item.body}</p>
-                        {item.href && item.hrefLabel && (
-                          <p className="mt-2">
-                            <Link href={item.href}>{item.hrefLabel}</Link>
-                          </p>
-                        )}
-                      </div>
-                    </div>
+                    </MediaCopy>
                   </Card.Content>
                 </Card>
               ))}
