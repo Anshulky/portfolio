@@ -4,13 +4,6 @@
 			"url": "https://migration-mcp.heroui.com",
 			"type": "http"
 		},
-		"mcp-docs-server": {
-			"command": "pnpm",
-			"args": [
-				"dlx",
-				"@assistant-ui/mcp-docs-server"
-			]
-		},
 		"heroui-react": {
 			"type": "stdio",
 			"command": "pnpm",
